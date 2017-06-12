@@ -32,7 +32,7 @@
                     <span class="input-group-addon">
                         <i class="glyphicon glyphicon-pushpin"></i>글번호
                     </span>
-                <input type="text" name="article_id" class="form-control" placeholder="글번호">
+                <input type="text" name="articleId" class="form-control" placeholder="글번호">
             </div>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon">제목</span>

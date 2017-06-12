@@ -1,11 +1,11 @@
 package kr.re.kitri.LucidDream.controller;
 
+import kr.re.kitri.LucidDream.model.Article;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.Resource;
 
 /**
  * /bbs ..전체보기
@@ -38,27 +38,37 @@ public class BbsController {
         return "bbs/loading";
     }
 
-
     @RequestMapping(value = "/bbs/write", method = RequestMethod.POST) // 요게 스프링 기본이라능 // 전에는 get,set 으로 했는데 되게 달라지네 ㅇㅁㅇ...
-    public ModelAndView doWrite(@RequestParam("article_id") String articleId,
-                          @RequestParam("title") String title,
-                          @RequestParam("author") String author,
-                          @RequestParam("content") String content) {
-
-        System.out.println(articleId);
-        System.out.println(title);
-        System.out.println(author);
-        System.out.println(content);
+    public @ResponseBody  ModelAndView doWrite(Article article) {
 
         ModelAndView mav = new ModelAndView();
         mav.setViewName("bbs/do_write");  // 아래 데이터가 같이 넘어감 do_write페이지로
-        mav.addObject("articleId", articleId);
-        mav.addObject("title", title);
-        mav.addObject("author", author);
-        mav.addObject("content", content); // 초록색 안에 있는 이름이 파라메터명
+        mav.addObject("article", article);
 
         return mav;
     }
+
+
+//    @RequestMapping(value = "/bbs/write", method = RequestMethod.POST) // 요게 스프링 기본이라능 // 전에는 get,set 으로 했는데 되게 달라지네 ㅇㅁㅇ...
+//    public ModelAndView doWrite(@RequestParam("article_id") String articleId,
+//                          @RequestParam("title") String title,
+//                          @RequestParam("author") String author,
+//                          @RequestParam("content") String content) {
+//
+//        System.out.println(articleId);
+//        System.out.println(title);
+//        System.out.println(author);
+//        System.out.println(content);
+//
+//        ModelAndView mav = new ModelAndView();
+//        mav.setViewName("bbs/do_write");  // 아래 데이터가 같이 넘어감 do_write페이지로
+//        mav.addObject("articleId", articleId);
+//        mav.addObject("title", title);
+//        mav.addObject("author", author);
+//        mav.addObject("content", content); // 초록색 안에 있는 이름이 파라메터명
+//
+//        return mav;
+//    }
 
 //    @RequestMapping("/bbs/write/do")
 //    public String doWrite(HttpServletRequest request) {
